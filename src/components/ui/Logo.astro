@@ -2,13 +2,13 @@
 /**
  * The AgentDrops lockup: the mark plus the wordmark. The mark is the Icons8
  * "water" icon (iOS Filled, id 9021; see icons8.json), shipped as PNG in two
- * colours so it follows the light and dark themes.
+ * colours: dark on the light site, light on always-dark sections.
  */
 interface Props {
   class?: string;
   /** Show only the mark, for tight spaces. */
   markOnly?: boolean;
-  /** `auto` follows the visitor's theme; `light` is for always-dark sections. */
+  /** `auto` is for the light site; `light` is for always-dark sections. */
   tone?: 'auto' | 'light';
 }
 const { class: className = '', markOnly = false, tone = 'auto' } = Astro.props;
@@ -16,9 +16,6 @@ const { class: className = '', markOnly = false, tone = 'auto' } = Astro.props;
 
 <span class:list={['inline-flex items-center gap-2', className]}>
   <picture class="shrink-0">
-    {tone === 'auto' && (
-      <source srcset="/brand/mark-dark.png" media="(prefers-color-scheme: dark)" />
-    )}
     <img
       src={tone === 'light' ? '/brand/mark-dark.png' : '/brand/mark-light.png'}
       alt=""

@@ -2,9 +2,8 @@
 @import 'tailwindcss';
 
 /*
- * Brand colours: black, white and dark blue (--brand). Light is the default;
- * dark follows the visitor's system setting, and `.theme-dark` forces dark on
- * one section (the footer). On black, text accents use a lighter blue so they
+ * Brand colours: black, white and dark blue (--brand). The site is always
+ * light (white); `.theme-dark` forces dark on chosen sections (the footer). On black, text accents use a lighter blue so they
  * stay readable; large brand surfaces stay dark blue.
  *
  * Each themed token is written once as `color-mix(dark var(--dark), light)`.
@@ -13,12 +12,6 @@
 :root {
   --dark: 0%;
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --dark: 100%;
-    color-scheme: dark;
-  }
 }
 .theme-dark {
   --dark: 100%;
