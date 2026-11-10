@@ -329,3 +329,22 @@ export const sources = [
     href: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10077995/',
   },
 ];
+
+/** The person behind AgentDrops, shown on the contact page. */
+export const founder = {
+  name: 'Anantha Narayanan',
+  role: 'Founder, AgentDrops',
+  intro: 'Prefer to talk to a person? Reach me directly on any of these.',
+  links: [
+    { kind: 'email', label: 'Email', handle: 'ananthanarayanan431@gmail.com' },
+    { kind: 'github', label: 'GitHub', handle: 'ananthanarayanan431' },
+    { kind: 'linkedin', label: 'LinkedIn', handle: 'rananthanarayananofficial' },
+  ],
+} as const;
+
+/** Where each kind of profile link points. */
+export const profileHref = {
+  email: (h: string) => `mailto:${h}`,
+  github: (h: string) => `https://github.com/${h}`,
+  linkedin: (h: string) => `https://www.linkedin.com/in/${h}/`,
+};

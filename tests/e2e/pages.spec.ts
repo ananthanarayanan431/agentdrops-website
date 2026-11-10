@@ -49,3 +49,20 @@ test('service cards link to their section on the services page', async ({ page }
   await expect(page).toHaveURL(/\/services\/#voice-agents$/);
   await expect(page.locator('#voice-agents-title')).toBeVisible();
 });
+
+test("contact page lists the founder's direct contact links", async ({ page }) => {
+  await page.goto('/contact/');
+  const section = page.getByRole('region', { name: 'Anantha Narayanan' });
+  await expect(section.getByRole('link', { name: /GitHub/ })).toHaveAttribute(
+    'href',
+    'https://github.com/ananthanarayanan431',
+  );
+  await expect(section.getByRole('link', { name: /Email/ })).toHaveAttribute(
+    'href',
+    'mailto:ananthanarayanan431@gmail.com',
+  );
+  await expect(section.getByRole('link', { name: /LinkedIn/ })).toHaveAttribute(
+    'href',
+    'https://www.linkedin.com/in/rananthanarayananofficial/',
+  );
+});
