@@ -60,7 +60,7 @@ test("contact page lists the founder's direct contact links", async ({ page }) =
   );
   await expect(section.getByRole('link', { name: /Email/ })).toHaveAttribute(
     'href',
-    'mailto:ananthanarayanan431@gmail.com',
+    'mailto:hello@agentdrops.tech',
   );
   await expect(section.getByRole('link', { name: /LinkedIn/ })).toHaveAttribute(
     'href',

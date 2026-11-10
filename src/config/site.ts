@@ -10,7 +10,7 @@ export const site = {
   tagline: 'We experiment first. Then we drop it for you.',
   description:
     'AgentDrops is a research-first AI company. We build agentic products, voice agents and custom software, tested in our lab before we build them for you.',
-  email: 'ananthanarayanan431@gmail.com',
+  email: 'hello@agentdrops.tech',
 };
 
 export interface NavItem {

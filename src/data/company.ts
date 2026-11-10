@@ -337,7 +337,7 @@ export const founder = {
   location: 'India',
   intro: 'Prefer to talk to a person? Reach me directly on any of these.',
   links: [
-    { kind: 'email', label: 'Email', handle: 'ananthanarayanan431@gmail.com' },
+    { kind: 'email', label: 'Email', handle: 'hello@agentdrops.tech' },
     { kind: 'github', label: 'GitHub', handle: 'ananthanarayanan431' },
     { kind: 'linkedin', label: 'LinkedIn', handle: 'rananthanarayananofficial' },
   ],
