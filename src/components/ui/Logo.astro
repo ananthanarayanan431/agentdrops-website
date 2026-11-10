@@ -8,14 +8,24 @@ interface Props {
   class?: string;
   /** Show only the mark, for tight spaces. */
   markOnly?: boolean;
+  /** `auto` follows the visitor's theme; `light` is for always-dark sections. */
+  tone?: 'auto' | 'light';
 }
-const { class: className = '', markOnly = false } = Astro.props;
+const { class: className = '', markOnly = false, tone = 'auto' } = Astro.props;
 ---
 
 <span class:list={['inline-flex items-center gap-2', className]}>
   <picture class="shrink-0">
-    <source srcset="/brand/mark-dark.png" media="(prefers-color-scheme: dark)" />
-    <img src="/brand/mark-light.png" alt="" width="28" height="28" class="size-7" />
+    {tone === 'auto' && (
+      <source srcset="/brand/mark-dark.png" media="(prefers-color-scheme: dark)" />
+    )}
+    <img
+      src={tone === 'light' ? '/brand/mark-dark.png' : '/brand/mark-light.png'}
+      alt=""
+      width="28"
+      height="28"
+      class="size-7"
+    />
   </picture>
   {!markOnly && (
     <span class="text-[1.05rem] font-semibold tracking-tight text-ink">
