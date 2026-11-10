@@ -2,70 +2,56 @@
 @import 'tailwindcss';
 
 /*
- * Runtime tokens. Light is the default; dark follows the visitor's system
- * setting. Utilities below read these, so both themes come for free.
- */
-/*
  * Brand colours: black, white and dark blue (--brand). Light is the default;
- * dark follows the visitor's system setting. On black, text accents use a
- * lighter blue so they stay readable; large brand surfaces stay dark blue.
+ * dark follows the visitor's system setting, and `.theme-dark` forces dark on
+ * one section (the footer). On black, text accents use a lighter blue so they
+ * stay readable; large brand surfaces stay dark blue.
+ *
+ * Each themed token is written once as `color-mix(dark var(--dark), light)`.
+ * `--dark` is 0% or 100%, so the mix lands exactly on one of the two values.
  */
 :root {
-  --bg: #ffffff;
-  --bg-2: #f4f6fa;
-  --surface: #ffffff;
-  --ink: #000000;
-  --ink-2: #2b303b;
-  --muted: #5a6070;
-  --line: #e3e7ee;
-  --accent: #0b2a6b;
-  --accent-2: #1f4fd6;
-  --accent-ink: #ffffff;
-  --brand: #0b2a6b;
-  --brand-2: #071b47;
-  --brand-ink: #ffffff;
-  --ok: #0e7340;
+  --dark: 0%;
   color-scheme: light;
 }
-
-/* Dark tokens, shared by dark mode and by sections that are always dark. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #000000;
-    --bg-2: #060910;
-    --surface: #0a0e18;
-    --ink: #ffffff;
-    --ink-2: #c8cedb;
-    --muted: #8b94a7;
-    --line: #1b2232;
-    --accent: #7c9cff;
-    --accent-2: #3b6cff;
-    --accent-ink: #000000;
-    --ok: #3ccf82;
+    --dark: 100%;
     color-scheme: dark;
   }
 }
-
 .theme-dark {
-  --bg: #000000;
-  --bg-2: #060910;
-  --surface: #0a0e18;
-  --ink: #ffffff;
-  --ink-2: #c8cedb;
-  --muted: #8b94a7;
-  --line: #1b2232;
-  --accent: #7c9cff;
-  --accent-2: #3b6cff;
-  --accent-ink: #000000;
+  --dark: 100%;
   color-scheme: dark;
 }
 
-@theme {
-  --font-sans: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+/* Declared on .theme-dark too, so the mix re-resolves with its own --dark. */
+:root,
+.theme-dark {
+  --bg: color-mix(in srgb, #000000 var(--dark), #ffffff);
+  --bg-2: color-mix(in srgb, #060910 var(--dark), #f4f6fa);
+  --surface: color-mix(in srgb, #0a0e18 var(--dark), #ffffff);
+  --ink: color-mix(in srgb, #ffffff var(--dark), #000000);
+  --ink-2: color-mix(in srgb, #c8cedb var(--dark), #2b303b);
+  --muted: color-mix(in srgb, #8b94a7 var(--dark), #5a6070);
+  --line: color-mix(in srgb, #1b2232 var(--dark), #e3e7ee);
+  --accent: color-mix(in srgb, #7c9cff var(--dark), #0b2a6b);
+  --accent-2: color-mix(in srgb, #3b6cff var(--dark), #1f4fd6);
+  --accent-ink: color-mix(in srgb, #000000 var(--dark), #ffffff);
+  --ok: color-mix(in srgb, #3ccf82 var(--dark), #0e7340);
+}
+
+/* Brand surfaces look the same in both themes. */
+:root {
+  --brand: #0b2a6b;
+  --brand-2: #071b47;
+  --brand-ink: #ffffff;
 }
 
 @theme inline {
+  /* Families self-hosted by the Astro fonts API (see astro.config.mjs). */
+  --font-sans: var(--font-inter-tight);
+  --font-mono: var(--font-jetbrains-mono);
   --color-bg: var(--bg);
   --color-bg-2: var(--bg-2);
   --color-surface: var(--surface);

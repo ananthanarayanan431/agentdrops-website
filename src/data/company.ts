@@ -20,13 +20,8 @@ export const problem = {
   stats: [
     {
       value: '88%',
-      label: 'of enterprise AI agent pilots never reach production.',
-      source: 'IDC, reported 2026',
-    },
-    {
-      value: '41%',
-      label: 'of the pilots that do ship show negative ROI after 12 months.',
-      source: 'Forrester, cited 2026',
+      label: 'of enterprise AI proofs of concept never reach wide deployment.',
+      source: 'IDC with Lenovo, via CIO.com, 2025',
     },
     {
       value: '40%+',
@@ -321,12 +316,9 @@ export const cta = {
 
 export const sources = [
   {
-    label: 'IDC research on AI agent pilots reaching production, as reported in 2026',
-    href: 'https://www.beri.net/article/ai-agent-pilots-fail-88-percent-production-2026',
-  },
-  {
-    label: 'Forrester findings on post-pilot ROI, as cited by AY Automate, 2026',
-    href: 'https://www.ayautomate.com/blog/why-ai-pilots-dont-reach-production',
+    label:
+      'CIO.com, 25 March 2025: IDC and Lenovo research finds 88% of AI proofs of concept never reach wide deployment',
+    href: 'https://www.cio.com/article/3850763/88-of-ai-pilots-fail-to-reach-production-but-thats-not-all-on-it.html',
   },
   {
     label: 'Gartner, 25 June 2025: over 40% of agentic AI projects will be canceled by end of 2027',

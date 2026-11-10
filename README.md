@@ -15,7 +15,7 @@ AgentDrops website.
 | Quality      | ESLint (flat config, astro + jsx-a11y), Prettier                   |
 | Tests        | Vitest (unit), Playwright + axe-core (e2e, accessibility)          |
 | Git hooks    | Husky + lint-staged                                                |
-| Tooling      | pnpm 10, Node 24 (`.nvmrc`), Makefile, GitHub Actions CI           |
+| Tooling      | pnpm 10, Node 22 (`.nvmrc`), Makefile, GitHub Actions CI           |
 | Hosting      | Cloudflare Workers static assets (`wrangler.jsonc`)                |
 
 ## Getting started

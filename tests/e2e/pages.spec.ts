@@ -9,18 +9,28 @@ const pages = [
   { path: '/contact/', h1: 'Tell us what you want to build.' },
 ];
 
-for (const { path, h1 } of pages) {
-  test(`${path} renders without errors and has no accessibility violations`, async ({ page }) => {
-    const errors: string[] = [];
-    page.on('pageerror', (e) => errors.push(e.message));
-    page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+for (const colorScheme of ['light', 'dark'] as const) {
+  test.describe(`${colorScheme} mode`, () => {
+    test.use({ colorScheme });
 
-    await page.goto(path);
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(h1, { useInnerText: true });
+    for (const { path, h1 } of pages) {
+      test(`${path} renders without errors and has no accessibility violations`, async ({
+        page,
+      }) => {
+        const errors: string[] = [];
+        page.on('pageerror', (e) => errors.push(e.message));
+        page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
 
-    const results = await new AxeBuilder({ page }).analyze();
-    expect(results.violations).toEqual([]);
-    expect(errors).toEqual([]);
+        await page.goto(path);
+        await expect(page.getByRole('heading', { level: 1 })).toHaveText(h1, {
+          useInnerText: true,
+        });
+
+        const results = await new AxeBuilder({ page }).analyze();
+        expect(results.violations).toEqual([]);
+        expect(errors).toEqual([]);
+      });
+    }
   });
 }
 
