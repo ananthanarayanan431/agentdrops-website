@@ -1,0 +1,34 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+
+# environment
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+
+# test output
+playwright-report/
+test-results/
+coverage/
+
+# os / editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Lighthouse CI reports
+.lighthouseci/
+
+# Wrangler local state
+.wrangler/

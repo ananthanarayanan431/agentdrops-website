@@ -1,0 +1,7 @@
+/* Tailwind entry. Add design tokens under @theme and shared styles below. */
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+}
