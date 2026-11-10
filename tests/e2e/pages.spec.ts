@@ -53,6 +53,7 @@ test('service cards link to their section on the services page', async ({ page }
 test("contact page lists the founder's direct contact links", async ({ page }) => {
   await page.goto('/contact/');
   const section = page.getByRole('region', { name: 'Anantha Narayanan' });
+  await expect(section).toContainText('India');
   await expect(section.getByRole('link', { name: /GitHub/ })).toHaveAttribute(
     'href',
     'https://github.com/ananthanarayanan431',

@@ -1,5 +1,5 @@
 ---
-import { Mail } from '@lucide/astro';
+import { Mail, MapPin } from '@lucide/astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/sections/PageHero.astro';
 import SocialIcon from '@/components/ui/SocialIcon.astro';
@@ -90,6 +90,13 @@ const next = [
             {founder.name}
           </h2>
           <p class="mt-1 text-ink-2">{founder.role}</p>
+          <p class="mt-2 flex items-center gap-1.5 text-sm text-muted">
+            <MapPin class="size-4 shrink-0" aria-hidden="true" />
+            <span>
+              <span class="sr-only">Location: </span>
+              {founder.location}
+            </span>
+          </p>
           <p class="mt-4 text-ink-2">{founder.intro}</p>
         </div>
         <ul class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">

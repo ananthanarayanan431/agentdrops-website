@@ -334,6 +334,7 @@ export const sources = [
 export const founder = {
   name: 'Anantha Narayanan',
   role: 'Founder, AgentDrops',
+  location: 'India',
   intro: 'Prefer to talk to a person? Reach me directly on any of these.',
   links: [
     { kind: 'email', label: 'Email', handle: 'ananthanarayanan431@gmail.com' },
