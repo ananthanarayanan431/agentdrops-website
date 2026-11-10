@@ -1,0 +1,20 @@
+---
+import { AudioLines, Bot, CodeXml, FlaskConical, Workflow } from '@lucide/astro';
+import type { ServiceIcon } from '@/data/company';
+
+interface Props {
+  name: ServiceIcon;
+  class?: string;
+}
+const { name, class: className = 'size-5' } = Astro.props;
+const icons = {
+  bot: Bot,
+  voice: AudioLines,
+  code: CodeXml,
+  flask: FlaskConical,
+  workflow: Workflow,
+};
+const Icon = icons[name];
+---
+
+<Icon class={className} aria-hidden="true" />

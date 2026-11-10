@@ -1,0 +1,53 @@
+---
+import Button from '@/components/ui/Button.astro';
+import { cta } from '@/data/company';
+---
+
+<section class="py-12" aria-labelledby="cta-title">
+  <div class="wrap">
+    <div class="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-16 text-bg sm:px-14 sm:py-20">
+      <svg
+        viewBox="0 0 400 400"
+        class="pointer-events-none absolute -right-24 -bottom-32 size-[28rem] opacity-40"
+        aria-hidden="true"
+      >
+        <circle
+          class="ripple"
+          cx="200"
+          cy="200"
+          r="190"
+          fill="none"
+          stroke="var(--accent)"
+        ></circle>
+        <circle
+          class="ripple"
+          cx="200"
+          cy="200"
+          r="190"
+          fill="none"
+          stroke="var(--accent)"
+        ></circle>
+        <circle
+          class="ripple"
+          cx="200"
+          cy="200"
+          r="190"
+          fill="none"
+          stroke="var(--accent-2)"
+        ></circle>
+      </svg>
+      <div class="relative max-w-2xl">
+        <h2 id="cta-title" class="text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+          {cta.title}
+        </h2>
+        <p class="mt-5 text-lg text-bg/75">{cta.body}</p>
+        <Button
+          href={cta.href}
+          class="mt-9 bg-bg !text-ink hover:!bg-accent hover:!text-accent-ink"
+        >
+          {cta.label}
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import ServiceIcon from '@/components/ui/ServiceIcon.astro';
+import { services } from '@/data/company';
+---
+
+<section class="py-20 sm:py-28" aria-labelledby="services-title">
+  <div class="wrap">
+    <SectionHeader
+      id="services-title"
+      eyebrow="What we do"
+      title="We build agents, voice and software. We prove them first."
+      lede="Five kinds of work, one method behind all of them."
+    />
+    <ul class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s, i) => (
+        <li class:list={[i === 0 && 'lg:col-span-2', 'h-full']}>
+          <a
+            href={`/services/#${s.slug}`}
+            class="group flex h-full flex-col rounded-3xl border border-line bg-surface p-7 transition-colors hover:border-ink"
+          >
+            <div class="flex items-center justify-between">
+              <span class="flex size-11 items-center justify-center rounded-2xl bg-accent/10 text-accent">
+                <ServiceIcon name={s.icon} />
+              </span>
+              <ArrowUpRight
+                class="size-5 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink"
+                aria-hidden="true"
+              />
+            </div>
+            <h3 class="mt-8 text-xl font-semibold tracking-tight">{s.name}</h3>
+            <p class="mt-2 text-ink-2">{s.summary}</p>
+            <p class="mt-auto pt-6 font-mono text-xs text-muted">
+              0{i + 1} / 0{services.length}
+            </p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

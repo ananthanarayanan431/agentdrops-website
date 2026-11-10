@@ -1,0 +1,25 @@
+---
+import { Plus } from '@lucide/astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { faq } from '@/data/company';
+---
+
+<section class="py-20 sm:py-28" aria-labelledby="faq-title">
+  <div class="wrap grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+    <SectionHeader id="faq-title" eyebrow="Questions" title="Asked before every project." />
+    <div class="divide-y divide-line border-y border-line">
+      {faq.map((item) => (
+        <details class="group py-5">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium [&::-webkit-details-marker]:hidden">
+            {item.q}
+            <Plus
+              class="mt-1 size-5 shrink-0 text-muted transition-transform group-open:rotate-45"
+              aria-hidden="true"
+            />
+          </summary>
+          <p class="mt-3 max-w-2xl text-ink-2">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

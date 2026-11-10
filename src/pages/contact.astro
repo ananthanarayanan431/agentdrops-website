@@ -1,0 +1,78 @@
+---
+import { Mail } from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/sections/PageHero.astro';
+import { site } from '@/config/site';
+
+const subject = encodeURIComponent('New project: ');
+const body = encodeURIComponent(
+  'What we want to build:\n\nWho it is for:\n\nWhat success would look like:\n\nSystems it needs to work with:\n',
+);
+const brief = [
+  'What you want to build, in a sentence or two',
+  'Who will use it, and what they do today instead',
+  'What success would look like, in numbers if you have them',
+  'The systems it needs to work with',
+];
+const next = [
+  { n: '01', t: 'We reply within two working days.' },
+  { n: '02', t: 'A 30-minute call to understand the job and the constraints.' },
+  { n: '03', t: 'A written proposal for a first experiment: question, success line, timeline.' },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Tell AgentDrops what you want to build. We will tell you how we would test it first."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Tell us what you want to build."
+    lede="We will tell you how we would test it, and what a first experiment would show."
+  />
+
+  <section class="py-20 sm:py-24">
+    <div class="wrap grid gap-10 lg:grid-cols-2">
+      <div class="rounded-3xl border border-line bg-surface p-8 sm:p-10">
+        <span class="flex size-12 items-center justify-center rounded-2xl bg-accent/10 text-accent">
+          <Mail class="size-6" aria-hidden="true" />
+        </span>
+        <h2 class="mt-6 text-2xl font-semibold tracking-tight">Email us</h2>
+        <p class="mt-2 text-ink-2">The fastest way to start. A few lines is enough.</p>
+        <a
+          href={`mailto:${site.email}?subject=${subject}&body=${body}`}
+          class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent hover:text-accent-ink"
+        >
+          Write to {site.email}
+        </a>
+        <h3 class="mt-10 font-mono text-xs tracking-[0.14em] text-muted uppercase">
+          Helpful to include
+        </h3>
+        <ul class="mt-4 space-y-3">
+          {brief.map((b) => (
+            <li class="flex gap-3 text-ink-2">
+              <span class="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+              {b}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight">What happens next</h2>
+        <ol class="mt-8 space-y-4">
+          {next.map((s) => (
+            <li class="flex gap-5 rounded-3xl border border-line p-6">
+              <span class="font-mono text-sm text-accent">{s.n}</span>
+              <p class="text-ink-2">{s.t}</p>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-8 text-ink-2">
+          Not sure it’s an AI problem? Ask anyway. Sometimes the right answer is plain software, and
+          sometimes it’s nothing at all. We’ll say so.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

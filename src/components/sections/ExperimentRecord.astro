@@ -1,0 +1,26 @@
+---
+import { experimentRecord as r } from '@/data/company';
+---
+
+<!-- A specimen of the record every experiment starts with: the format, not a result. -->
+<figure class="rounded-3xl border border-line bg-surface shadow-[0_1px_0_var(--line),0_24px_60px_-30px_rgb(0_0_0/0.25)]">
+  <div class="flex items-center justify-between border-b border-line px-6 py-4 font-mono text-xs">
+    <span class="text-muted">{r.id}</span>
+    <span class="rounded-full border border-line px-2.5 py-0.5 text-muted">Example record</span>
+  </div>
+  <div class="px-6 py-6">
+    <p class="text-lg font-semibold tracking-tight">{r.title}</p>
+    <dl class="mt-5 space-y-4">
+      {r.fields.map((f) => (
+        <div class="grid gap-1 sm:grid-cols-[7rem_1fr] sm:gap-4">
+          <dt class="font-mono text-xs tracking-wider text-muted uppercase sm:pt-0.5">{f.k}</dt>
+          <dd class="text-sm text-ink-2">{f.v}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+  <figcaption class="flex items-center gap-2 rounded-b-3xl border-t border-line bg-bg-2/60 px-6 py-4 font-mono text-xs text-ink">
+    <span class="size-2 rounded-full bg-ok" aria-hidden="true"></span>
+    {r.verdict}
+  </figcaption>
+</figure>
