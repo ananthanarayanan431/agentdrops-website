@@ -3,8 +3,7 @@
  * browser). Brand facts and navigation live here.
  */
 
-// TODO: set the production domain before launch.
-export const SITE_URL = 'https://agentdrops.example';
+export const SITE_URL = 'https://agentdrops.tech';
 
 export const site = {
   name: 'AgentDrops',
