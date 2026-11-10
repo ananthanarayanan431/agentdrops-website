@@ -1,0 +1,45 @@
+---
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { method } from '@/data/company';
+---
+
+<section class="py-20 sm:py-28" aria-labelledby="method-title">
+  <div class="wrap">
+    <SectionHeader
+      id="method-title"
+      eyebrow={method.eyebrow}
+      title={method.title}
+      lede={method.lede}
+    />
+    <ol class="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      {method.steps.map((step, i) => (
+        <li
+          class:list={[
+            'flex flex-col p-7',
+            i === 2 ? 'theme-dark bg-brand text-ink' : 'bg-surface',
+          ]}
+        >
+          <div class="flex items-baseline justify-between">
+            <span class="font-mono text-sm text-accent">{step.n}</span>
+            {i === 2 && (
+              <span class="rounded-full bg-accent px-2.5 py-0.5 font-mono text-[0.65rem] tracking-wider text-accent-ink uppercase">
+                Go / no-go
+              </span>
+            )}
+          </div>
+          <h3 class="mt-6 text-2xl font-semibold tracking-tight">{step.name}</h3>
+          <p class="mt-2 text-ink-2">{step.body}</p>
+          <p
+            class:list={[
+              'mt-auto border-t border-dashed border-line pt-4 font-mono text-xs',
+              i === 2 ? 'text-ink-2' : 'text-muted',
+            ]}
+          >
+            <span class="text-ink">→</span> {step.out}
+          </p>
+        </li>
+      ))}
+    </ol>
+    <p class="mt-8 text-2xl font-semibold tracking-tight">{method.closer}</p>
+  </div>
+</section>

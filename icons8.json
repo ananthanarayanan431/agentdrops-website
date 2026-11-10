@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "icons": {
+    "pack": "ios_filled",
+    "sizes": [64, 96, 180],
+    "color": "#0B2A6B",
+    "items": {
+      "logo-mark": { "id": "9021", "commonName": "water" }
+    }
+  },
+  "tokens": { "iconColor": "--accent" }
+}

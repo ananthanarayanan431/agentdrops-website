@@ -3,12 +3,15 @@
  * browser). Brand facts and navigation live here.
  */
 
-// TODO: set the production domain.
+// TODO: set the production domain before launch.
 export const SITE_URL = 'https://agentdrops.example';
 
 export const site = {
   name: 'AgentDrops',
-  description: 'AgentDrops website.',
+  tagline: 'We experiment first. Then we drop it for you.',
+  description:
+    'AgentDrops is a research-first AI company. We build agentic products, voice agents and custom software, tested in our lab before we build them for you.',
+  email: 'ananthanarayanan431@gmail.com',
 };
 
 export interface NavItem {
@@ -16,4 +19,10 @@ export interface NavItem {
   href: string;
 }
 
-export const NAV: NavItem[] = [{ label: 'Home', href: '/' }];
+export const NAV: NavItem[] = [
+  { label: 'Services', href: '/services/' },
+  { label: 'Lab', href: '/lab/' },
+  { label: 'Company', href: '/company/' },
+];
+
+export const CONTACT: NavItem = { label: 'Contact', href: '/contact/' };

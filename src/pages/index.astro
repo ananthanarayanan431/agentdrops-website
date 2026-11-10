@@ -1,10 +1,23 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Cta from '@/components/sections/Cta.astro';
+import Differentiators from '@/components/sections/Differentiators.astro';
+import Faq from '@/components/sections/Faq.astro';
+import Hero from '@/components/sections/Hero.astro';
+import LabTeaser from '@/components/sections/LabTeaser.astro';
+import Method from '@/components/sections/Method.astro';
+import Problem from '@/components/sections/Problem.astro';
+import ServicesGrid from '@/components/sections/ServicesGrid.astro';
 import { site } from '@/config/site';
 ---
 
 <BaseLayout title={site.name}>
-  <section class="mx-auto max-w-3xl px-4 py-24">
-    <h1 class="text-4xl font-semibold tracking-tight">{site.name}</h1>
-  </section>
+  <Hero />
+  <Problem />
+  <ServicesGrid />
+  <LabTeaser />
+  <Method />
+  <Differentiators />
+  <Faq />
+  <Cta />
 </BaseLayout>

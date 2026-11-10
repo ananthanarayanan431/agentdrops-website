@@ -1,7 +1,181 @@
-/* Tailwind entry. Add design tokens under @theme and shared styles below. */
+/* Tailwind entry and the AgentDrops design tokens. */
 @import 'tailwindcss';
 
-@theme {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+/*
+ * Brand colours: black, white and dark blue (--brand). Light is the default;
+ * dark follows the visitor's system setting, and `.theme-dark` forces dark on
+ * one section (the footer). On black, text accents use a lighter blue so they
+ * stay readable; large brand surfaces stay dark blue.
+ *
+ * Each themed token is written once as `color-mix(dark var(--dark), light)`.
+ * `--dark` is 0% or 100%, so the mix lands exactly on one of the two values.
+ */
+:root {
+  --dark: 0%;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dark: 100%;
+    color-scheme: dark;
+  }
+}
+.theme-dark {
+  --dark: 100%;
+  color-scheme: dark;
+}
+
+/* Declared on .theme-dark too, so the mix re-resolves with its own --dark. */
+:root,
+.theme-dark {
+  --bg: color-mix(in srgb, #000000 var(--dark), #ffffff);
+  --bg-2: color-mix(in srgb, #060910 var(--dark), #f4f6fa);
+  --surface: color-mix(in srgb, #0a0e18 var(--dark), #ffffff);
+  --ink: color-mix(in srgb, #ffffff var(--dark), #000000);
+  --ink-2: color-mix(in srgb, #c8cedb var(--dark), #2b303b);
+  --muted: color-mix(in srgb, #8b94a7 var(--dark), #5a6070);
+  --line: color-mix(in srgb, #1b2232 var(--dark), #e3e7ee);
+  --accent: color-mix(in srgb, #7c9cff var(--dark), #0b2a6b);
+  --accent-2: color-mix(in srgb, #3b6cff var(--dark), #1f4fd6);
+  --accent-ink: color-mix(in srgb, #000000 var(--dark), #ffffff);
+  --ok: color-mix(in srgb, #3ccf82 var(--dark), #0e7340);
+}
+
+/* Brand surfaces look the same in both themes. */
+:root {
+  --brand: #0b2a6b;
+  --brand-2: #071b47;
+  --brand-ink: #ffffff;
+}
+
+@theme inline {
+  /* Families self-hosted by the Astro fonts API (see astro.config.mjs). */
+  --font-sans: var(--font-inter-tight);
+  --font-mono: var(--font-jetbrains-mono);
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-ink: var(--accent-ink);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+  --color-brand-ink: var(--brand-ink);
+  --color-ok: var(--ok);
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Page width and side gutters, shared by every section. */
+  .wrap {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .wrap {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* The faint lab grid behind the hero and the CTA. */
+  .lab-grid {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--line) 70%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--line) 70%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+  }
+
+  /* Ripple rings that spread out from the drop in the hero. */
+  .ripple {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: ripple 4.8s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+    opacity: 0;
+  }
+  .ripple:nth-of-type(2) {
+    animation-delay: 1.6s;
+  }
+  .ripple:nth-of-type(3) {
+    animation-delay: 3.2s;
+  }
+  @keyframes ripple {
+    0% {
+      transform: scale(0.2);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  .drop-fall {
+    animation: drop-fall 4.8s cubic-bezier(0.5, 0, 0.75, 0) infinite;
+  }
+  @keyframes drop-fall {
+    0% {
+      transform: translateY(-40px);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    30%,
+    100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  }
+
+  /* Text blocks of running copy on content pages. */
+  .prose-ad p + p {
+    margin-top: 1.1em;
+  }
 }

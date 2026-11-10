@@ -1,6 +1,6 @@
 // @ts-check
 import { writeFile } from 'node:fs/promises';
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
@@ -34,6 +34,25 @@ export default defineConfig({
   // intact in copy and paste and to screen readers.
   compressHTML: false,
   integrations: [react(), mdx(), sitemap(), cloudflareRedirects],
+  // Fonts are downloaded at build time and served from this site, not Google.
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'Inter Tight',
+      cssVariable: '--font-inter-tight',
+      weights: ['400 700'],
+      subsets: ['latin'],
+      fallbacks: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'JetBrains Mono',
+      cssVariable: '--font-jetbrains-mono',
+      weights: [400, 500],
+      subsets: ['latin'],
+      fallbacks: ['ui-monospace', 'SF Mono', 'Menlo', 'monospace'],
+    },
+  ],
   // Fetch the next page while the visitor hovers or focuses a link.
   prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
   redirects,

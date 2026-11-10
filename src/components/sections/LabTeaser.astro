@@ -1,0 +1,31 @@
+---
+import Button from '@/components/ui/Button.astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import ExperimentRecord from './ExperimentRecord.astro';
+import { labRules } from '@/data/company';
+---
+
+<section class="border-y border-line bg-bg-2/60 py-20 sm:py-28" aria-labelledby="lab-title">
+  <div class="wrap grid items-center gap-14 lg:grid-cols-2">
+    <div>
+      <SectionHeader
+        id="lab-title"
+        eyebrow="The lab"
+        title="Every build starts as a written experiment."
+        lede="Before we test anything, we write down the question, the success line and the rule for stopping. Then we run it on real cases and report what happened, including when it fails."
+      />
+      <ul class="mt-8 space-y-3">
+        {labRules.map((rule) => (
+          <li class="flex gap-3 text-ink-2">
+            <span class="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            {rule}
+          </li>
+        ))}
+      </ul>
+      <Button href="/lab/" variant="ghost" class="mt-9">
+        Inside the lab
+      </Button>
+    </div>
+    <ExperimentRecord />
+  </div>
+</section>
